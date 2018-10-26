@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 import '../assets/scss/repo.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCodeBranch,
-  faStar,
-  faExclamationCircle,
-  faGavel
-} from '@fortawesome/free-solid-svg-icons';
-import { connect } from "react-redux";
+import { faCodeBranch, faStar, faExclamationCircle, faGavel } from '@fortawesome/free-solid-svg-icons';
+import { connect } from 'react-redux';
 
 class Repo extends Component {
   render() {
     const license = this.props.license ? (
-      <div
-        className={`badge badge-${this.props.settings.theme}`}
-        title="license"
-      >
+      <div className={`badge badge-${this.props.settings.theme}`} title="license">
         <FontAwesomeIcon icon={faGavel} />
         &nbsp;
         <span className="metadataText">{this.props.license}</span>
@@ -30,35 +22,22 @@ class Repo extends Component {
               <a href={this.props.htmlURL}>{this.props.fullName}</a>
             </h5>
             <p className="card-text">
-              {this.props.description ? (
-                this.props.description
-              ) : (
-                <i>No description provided</i>
-              )}
+              {this.props.description ? this.props.description : <i>No description provided</i>}
             </p>
           </div>
           <div className="card-footer text-muted">
             <div className="row align-self-center">
-              <div
-                className={`badge badge-${this.props.settings.theme}`}
-                title="forks"
-              >
+              <div className={`badge badge-${this.props.settings.theme}`} title="forks">
                 <FontAwesomeIcon icon={faCodeBranch} />
                 &nbsp;
                 <span className="metadataText">{this.props.forks}</span>
               </div>
-              <div
-                className={`badge badge-${this.props.settings.theme}`}
-                title="stars"
-              >
+              <div className={`badge badge-${this.props.settings.theme}`} title="stars">
                 <FontAwesomeIcon icon={faStar} />
                 &nbsp;
                 <span className="metadataText">{this.props.stars}</span>
               </div>
-              <div
-                className={`badge badge-${this.props.settings.theme}`}
-                title="issues"
-              >
+              <div className={`badge badge-${this.props.settings.theme}`} title="issues">
                 <FontAwesomeIcon icon={faExclamationCircle} />
                 &nbsp;
                 <span className="metadataText">{this.props.openIssues}</span>
@@ -75,9 +54,7 @@ class Repo extends Component {
 const mapStateToProps = state => {
   return {
     settings: state.settings
-  }
+  };
 };
 
-export default connect(
-  mapStateToProps
-)(Repo);
+export default connect(mapStateToProps)(Repo);

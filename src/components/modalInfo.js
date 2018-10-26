@@ -10,7 +10,7 @@ import { Button, FormControl } from 'react-bootstrap';
 import Switch from 'react-switch';
 import GithubService from '../services/githubService';
 import ReactTooltip from 'react-tooltip';
-import { setTheme, Themes } from "../actions";
+import { setTheme, Themes } from '../actions';
 import { connect } from 'react-redux';
 
 Modal.setAppElement('#root');
@@ -113,7 +113,9 @@ class ModalInfo extends Component {
             Switch light/dark mode
             <Switch
               className="float-right"
-              onChange={checked => checked ? this.props.onThemeChange(Themes.THEME_DARK) : this.props.onThemeChange(Themes.THEME_LIGHT)}
+              onChange={checked =>
+                checked ? this.props.onThemeChange(Themes.THEME_DARK) : this.props.onThemeChange(Themes.THEME_LIGHT)
+              }
               checked={this.props.settings.theme === Themes.THEME_DARK}
               onColor="#111111"
               onHandleColor="#555555"
@@ -148,12 +150,7 @@ class ModalInfo extends Component {
           <div className="list-element">
             <FontAwesomeIcon data-tip data-for="tooltip-access-token" icon={faQuestionCircle} />
             &nbsp;Personal access token:
-            <ReactTooltip
-              id="tooltip-access-token"
-              place="right"
-              type={this.props.settings.theme}
-              effect="solid"
-            >
+            <ReactTooltip id="tooltip-access-token" place="right" type={this.props.settings.theme} effect="solid">
               <span>
                 <strong>No scopes needed at all</strong>
               </span>
@@ -186,15 +183,15 @@ class ModalInfo extends Component {
 const mapStateToProps = state => {
   return {
     settings: state.settings
-  }
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onThemeChange: theme => {
-      dispatch(setTheme(theme))
+      dispatch(setTheme(theme));
     }
-  }
+  };
 };
 
 export default connect(

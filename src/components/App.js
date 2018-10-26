@@ -265,9 +265,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     settings: state.settings
-  }
+  };
 };
 
-export default connect(
-  mapStateToProps
-)(App);
+export default connect(mapStateToProps)(App);

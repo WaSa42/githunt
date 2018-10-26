@@ -1,4 +1,4 @@
-import { SET_THEME, Themes } from "../actions";
+import { SET_THEME, Themes } from '../actions';
 
 const initialState = {
   theme: Themes.THEME_LIGHT

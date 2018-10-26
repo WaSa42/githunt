@@ -5,6 +5,7 @@ export const Themes = {
   THEME_LIGHT: 'light'
 };
 
-export const setTheme = (theme) => ({
-  type: SET_THEME, theme
+export const setTheme = theme => ({
+  type: SET_THEME,
+  theme
 });
