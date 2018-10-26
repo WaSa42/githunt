@@ -3,9 +3,9 @@ import logo from '../assets/img/logo.png';
 import '../assets/scss/header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSyncAlt, faInfoCircle, faCheck } from '@fortawesome/free-solid-svg-icons';
-import ModalInfo from '../components/modalInfo';
 import { Row, Button } from 'react-bootstrap';
 import app from '../../package.json';
+import ModalInfo from "./modalInfo";
 
 export default class Header extends Component {
   constructor(props) {

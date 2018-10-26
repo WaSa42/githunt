@@ -10,10 +10,12 @@ import { Button, FormControl } from 'react-bootstrap';
 import Switch from 'react-switch';
 import GithubService from '../services/githubService';
 import ReactTooltip from 'react-tooltip';
+import { setTheme, Themes } from "../actions";
+import { connect } from 'react-redux';
 
 Modal.setAppElement('#root');
 
-export default class ModalInfo extends Component {
+class ModalInfo extends Component {
   GITHUNT_REPO = process.env.REACT_APP_GITHUNT_REPO;
   CHROME_WEB_STORE = process.env.REACT_APP_CHROME_WEB_STORE;
   FIREFOX_ADDON = process.env.REACT_APP_FIREFOX_ADDON;
@@ -65,8 +67,8 @@ export default class ModalInfo extends Component {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        backgroundColor: this.props.darkMode ? '#343a40' : '#fff',
-        color: this.props.darkMode ? '#A5A5A5' : '#212529',
+        backgroundColor: this.props.settings.theme === Themes.THEME_DARK ? '#343a40' : '#fff',
+        color: this.props.settings.theme === Themes.THEME_DARK ? '#A5A5A5' : '#212529',
         width: '500px'
       }
     };
@@ -111,8 +113,8 @@ export default class ModalInfo extends Component {
             Switch light/dark mode
             <Switch
               className="float-right"
-              onChange={checked => this.props.switchMode(checked)}
-              checked={this.props.darkMode}
+              onChange={checked => checked ? this.props.onThemeChange(Themes.THEME_DARK) : this.props.onThemeChange(Themes.THEME_LIGHT)}
+              checked={this.props.settings.theme === Themes.THEME_DARK}
               onColor="#111111"
               onHandleColor="#555555"
               handleDiameter={20}
@@ -149,7 +151,7 @@ export default class ModalInfo extends Component {
             <ReactTooltip
               id="tooltip-access-token"
               place="right"
-              type={this.props.darkMode ? 'light' : 'dark'}
+              type={this.props.settings.theme}
               effect="solid"
             >
               <span>
@@ -180,3 +182,22 @@ export default class ModalInfo extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    settings: state.settings
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onThemeChange: theme => {
+      dispatch(setTheme(theme))
+    }
+  }
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ModalInfo);

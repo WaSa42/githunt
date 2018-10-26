@@ -15,6 +15,7 @@ import { Row } from 'react-bootstrap';
 import Repo from './repo';
 import Fade from 'react-reveal';
 import ScrollToTop from 'react-scroll-up';
+import { connect } from 'react-redux';
 
 class App extends Component {
   constructor(props) {
@@ -216,7 +217,7 @@ class App extends Component {
     };
 
     return (
-      <div className={this.state.darkMode ? 'dark' : 'light'} id="theme-container">
+      <div className={this.props.settings.theme} id="theme-container">
         <div className="App container">
           <Helmet>
             <meta charSet="utf-8" />
@@ -261,4 +262,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    settings: state.settings
+  }
+};
+
+export default connect(
+  mapStateToProps
+)(App);
